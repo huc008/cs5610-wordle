@@ -1,0 +1,27 @@
+.key-cell-vertical {
+    height: 70px;
+    width: 60px;
+    background-color: rgba(184, 180, 180, 0.625);
+    border: none;
+    border-radius: 4px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.key-cell-horizontal {
+    height: 70px;
+    width: 90px;
+    background-color: rgba(184, 180, 180, 0.625);
+    border: none;
+    border-radius: 4px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+}

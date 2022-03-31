@@ -5,7 +5,7 @@ export default function SingleBox(props) {
 
     return (
         <div>
-            <div className="box"></div>
+            <div className="single-box"></div>
         </div>
     );
 }

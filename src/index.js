@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './component/App';
-import EasyGame from './component/EasyGame';
+import App from './components/App';
+import EasyGame from './components/EasyGame';
 import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
