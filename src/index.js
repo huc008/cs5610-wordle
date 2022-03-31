@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <EasyGame />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
