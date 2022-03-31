@@ -1,0 +1,14 @@
+.box {
+    height: 100px;
+    width: 100px;
+    border: 1px solid grey;
+    background-color: pink;
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: black;
+}
