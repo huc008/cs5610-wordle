@@ -1,6 +1,5 @@
 import React from 'react';
 import './EasyGame.css';
-import SingleBox from './SingleBox';
 import FiveCol from './FiveCol';
 import KeyBoard from './KeyBoard';
 
