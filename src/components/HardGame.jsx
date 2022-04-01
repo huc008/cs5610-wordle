@@ -6,7 +6,7 @@ import KeyBoard from './KeyBoard';
 export default function MediumGame(props) {
     return (
         <div>
-            <h1 className="game-title">Medium Game</h1>
+            <h1 className="game-title">Hard Game</h1>
             <div className="grid-container">
                 <SevenCol />
                 <SevenCol />
