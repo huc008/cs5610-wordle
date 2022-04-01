@@ -12,6 +12,7 @@ import {
   Route,
   Link,
 } from "react-router-dom"
+import Rule from './components/Rule';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Route path={"/easy"} element={<EasyGame />}/>
         <Route path={"/medium"} element={<MediumGame />}/>
         <Route path={"/hard"} element={<HardGame />}/>
+        <Route path={"/rule"} element={<Rule />}/>
     </Routes>
   </BrowserRouter>,
   // <App />,
