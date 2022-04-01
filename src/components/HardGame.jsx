@@ -1,5 +1,4 @@
 import React from 'react';
-import './MediumGame.css';
 import SevenCol from './SevenCol';
 import KeyBoard from './KeyBoard';
 

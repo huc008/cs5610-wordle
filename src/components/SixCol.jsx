@@ -1,7 +1,5 @@
 import React from 'react';
-import './SixCol.css';
 import SingleBox from './SingleBox';
-
 
 export default function SixCol() {
     return (

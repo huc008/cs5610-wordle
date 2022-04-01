@@ -2,7 +2,6 @@ import React from 'react';
 import './FiveCol.css';
 import SingleBox from './SingleBox';
 
-
 export default function FiveCol() {
     return (
         <div className="row-container">
