@@ -1,26 +1,23 @@
-import React from 'react';
-import './EasyGame.css';
-import FiveCol from './FiveCol';
+import React, {createContext, useState} from 'react';
 import KeyBoard from './KeyBoard';
+import EasyBoard from './EasyBoard';
+import { boardDefaultEasy } from '../Words';
 
-export default function EasyGame(props) {
+export const AppContext = createContext();
+
+export default function EasyGame() {
+    const [board, setBoard] = useState(boardDefaultEasy);
     return (
         <div>
             <h1 className="game-title">Easy Game</h1>
-            <div className="grid-container">
-                <FiveCol />
-                <FiveCol />
-                <FiveCol />
-                <FiveCol />
-                <FiveCol />
-                <FiveCol />
-                <FiveCol />
-            </div>
-
-            <div className="keyboard-container">
-                <KeyBoard />
-            </div>
-            
+            <AppContext.Provider value={{board, setBoard}}>
+                <div className="grid-container">
+                    <EasyBoard />
+                </div>
+                <div className="keyboard-container">
+                    <KeyBoard />
+                </div>
+            </AppContext.Provider>
         </div>
     )
 }

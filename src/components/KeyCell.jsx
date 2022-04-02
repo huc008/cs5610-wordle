@@ -1,5 +1,4 @@
 import React from 'react';
-import './KeyCell.css';
 
 export default function KeyCell(props) {
     let className = "key-cell-vertical";
