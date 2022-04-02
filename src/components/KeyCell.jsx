@@ -3,7 +3,7 @@ import './KeyCell.css';
 
 export default function KeyCell(props) {
     let className = "key-cell-vertical";
-    if (props.value === "ENTER" || props.value === "⌫") {
+    if (props.value === "Enter" || props.value === "Backspace") {
         className = "key-cell-horizontal";
     }
 

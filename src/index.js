@@ -10,8 +10,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
-} from "react-router-dom"
+} from "react-router-dom";
 import Rule from './components/Rule';
 
 ReactDOM.render(

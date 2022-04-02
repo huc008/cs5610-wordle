@@ -29,7 +29,7 @@ export default function KeyBoard(props) {
                 <KeyCell value="L" />
             </div>
             <div className="keyboard-row">
-                <KeyCell value="ENTER" />
+                <KeyCell value="Enter" />
                 <KeyCell value="Z" />
                 <KeyCell value="X" />
                 <KeyCell value="C" />
@@ -37,7 +37,7 @@ export default function KeyBoard(props) {
                 <KeyCell value="B" />
                 <KeyCell value="N" />
                 <KeyCell value="M" />
-                <KeyCell value="⌫" />
+                <KeyCell value="Backspace" />
             </div>
         </div>
     );
