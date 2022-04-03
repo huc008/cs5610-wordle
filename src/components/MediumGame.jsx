@@ -1,5 +1,5 @@
 import React from 'react';
-import SixCol from './SixCol';
+import MediumBoard from './MediumBoard';
 import KeyBoard from './KeyBoard';
 
 export default function MediumGame(props) {
@@ -7,12 +7,7 @@ export default function MediumGame(props) {
         <div>
             <h1 className="game-title">Medium Game</h1>
             <div className="grid-container">
-                <SixCol />
-                <SixCol />
-                <SixCol />
-                <SixCol />
-                <SixCol />
-                <SixCol />
+                <MediumBoard />
             </div>
             <div className="keyboard-container">
                 <KeyBoard />
