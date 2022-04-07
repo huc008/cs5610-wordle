@@ -1,5 +1,3 @@
-import wordBankEasy from './wordle-bank-easy.txt';
-
 export const boardDefaultEasy = [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -10,11 +8,28 @@ export const boardDefaultEasy = [
     ["", "", "", "", ""],
 ];
 
+export const boardDefaultMedium = [
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+];
 
-export const generateWordsSetEasy = async () => {
+export const boardDefaultHard = [
+    ["", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", ""],
+    ["", "", "", "", "", "", ""],
+];
+
+
+export const generateWordsSet = async (inputBank) => {
     let wordSet;  
     let todaysWord;
-    await fetch(wordBankEasy)
+    await fetch(inputBank)
     .then((response) => response.text())  
     .then((result) => {
         const wordArr = result.split("\n");
