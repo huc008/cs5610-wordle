@@ -1,43 +1,63 @@
-import React from 'react';
+import React, { useCallback, useEffect, useContext } from 'react';
 import KeyCell from './KeyCell';
-import './KeyBoard.css';
+import { AppContext } from './EasyGame';
 
-export default function KeyBoard(props) {
+export default function KeyBoard() {
+    const {onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(AppContext);
+
+    const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+    const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+    const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
+
+    const handleKeyboard = useCallback((event) => {
+        if (event.key === "Enter") {
+            onEnter();
+        } else if (event.key === "Backspace") {
+            onDelete();
+        } else {
+            keys1.forEach((key) => {
+                if (event.key.toLowerCase() === key.toLowerCase()) {
+                    onSelectLetter(key)
+                }
+            })
+            keys2.forEach((key) => {
+                if (event.key.toLowerCase() === key.toLowerCase()) {
+                    onSelectLetter(key)
+                }
+            })
+            keys3.forEach((key) => {
+                if (event.key.toLowerCase() === key.toLowerCase()) {
+                    onSelectLetter(key)
+                }
+            })
+        }
+    });
+
+    useEffect( () => {
+        document.addEventListener("keydown", handleKeyboard);
+        return () => {
+            document.removeEventListener("keydown", handleKeyboard)
+        };
+    }, [handleKeyboard]);
+
     return (
-        <div className="keyboard">
+        <div className="keyboard" onKeyDown={handleKeyboard}>
             <div className="keyboard-row">
-                <KeyCell value="Q" />
-                <KeyCell value="W" />
-                <KeyCell value="E" />
-                <KeyCell value="R" />
-                <KeyCell value="T" />
-                <KeyCell value="Y" />
-                <KeyCell value="U" />
-                <KeyCell value="I" />
-                <KeyCell value="O" />
-                <KeyCell value="P" />
+                {keys1.map((key) => {
+                    return <KeyCell keyVal={key} disabled={disabledLetters.includes(key)} />;
+                })}
             </div>
             <div className="keyboard-row">
-                <KeyCell value="A" />
-                <KeyCell value="S" />
-                <KeyCell value="D" />
-                <KeyCell value="F" />
-                <KeyCell value="G" />
-                <KeyCell value="H" />
-                <KeyCell value="J" />
-                <KeyCell value="K" />
-                <KeyCell value="L" />
+                {keys2.map((key) => {
+                    return <KeyCell keyVal={key} disabled={disabledLetters.includes(key)} />;
+                })}
             </div>
             <div className="keyboard-row">
-                <KeyCell value="ENTER" />
-                <KeyCell value="Z" />
-                <KeyCell value="X" />
-                <KeyCell value="C" />
-                <KeyCell value="V" />
-                <KeyCell value="B" />
-                <KeyCell value="N" />
-                <KeyCell value="M" />
-                <KeyCell value="⌫" />
+                <KeyCell keyVal={"Enter"} actionKey />
+                {keys3.map((key) => {
+                    return <KeyCell keyVal={key} disabled={disabledLetters.includes(key)} />;
+                })}
+                <KeyCell keyVal={"Backspace"} actionKey />
             </div>
         </div>
     );

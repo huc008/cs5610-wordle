@@ -53,3 +53,97 @@
   flex: 1 1;
   margin: 0;
 }
+/* for board row  */
+.row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.single-box {
+  height: 70px;
+  width: 70px;
+  border: 2px solid rgba(184, 180, 180, 0.625);
+  background-color: white;
+  margin: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.game-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.keyboard-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* in keyboard.jsx */
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* in key cell.jsx  */
+.key-cell-vertical {
+  height: 70px;
+  width: 60px;
+  background-color: rgba(184, 180, 180, 0.625);
+  border: none;
+  border-radius: 4px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.key-cell-horizontal {
+  height: 70px;
+  width: 90px;
+  background-color: rgba(184, 180, 180, 0.625);
+  border: none;
+  border-radius: 4px;
+  margin: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#correct {
+  background-color: #528d4e;
+}
+
+#almost {
+  background-color: #b49f39;
+}
+
+#error {
+  background-color: grey;
+}
+
+#disabled {
+  background-color: #3a393c;
+}

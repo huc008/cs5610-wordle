@@ -1,9 +1,0 @@
-.keyboard {
-    display: flex;
-    flex-direction: column;
-}
-.keyboard-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
