@@ -7,6 +7,7 @@ import GameOver from './GameOver';
 import wordBankEasy from '../wordle-bank-easy.txt';
 import wordBankMedium from '../wordle-bank-medium.txt';
 import wordBankHard from '../wordle-bank-hard.txt';
+import GameModal from './GameModal';
 
 
 export const AppContext = createContext();
@@ -21,6 +22,11 @@ export default function EasyGame({row, col, difficultyLevel}) {
         gameOver: false,
         guessedWord: false,
     });
+
+    const [openModal, setOpenModal] = useState(false);
+
+    const handleClose = () => setOpenModal(false);
+    const handleShow = () => setOpenModal(true);
 
     let choosenWordBank = difficultyLevel === "Easy" ? wordBankEasy : difficultyLevel === "Medium" ? wordBankMedium : wordBankHard;
     useEffect(() => {
@@ -57,7 +63,8 @@ export default function EasyGame({row, col, difficultyLevel}) {
         if (wordSet.has(currWord.toLowerCase())) {
             setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0});
         } else {
-            alert("Word Not Found");
+            // alert("Word Not Found");
+            setOpenModal(true);
         }
 
         if (currWord.toLowerCase() === correctWord.toLowerCase()) {
@@ -87,7 +94,12 @@ export default function EasyGame({row, col, difficultyLevel}) {
                 disabledLetters,
                 gameOver,
                 setGameOver,
+                openModal, 
+                setOpenModal,
+                handleClose,
+                handleShow,
             }}>
+                {openModal ? <GameModal/> : null}
                 <div className="grid-container">
                     <EasyBoard row={row} col={col}/>
                 </div>

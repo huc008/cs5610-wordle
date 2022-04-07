@@ -17,6 +17,7 @@ export default function KeyCell({keyVal, disabled, actionKey}) {
             onSelectLetter(keyVal); 
         }
     }
+    
     let className = "key-cell-vertical";
     if (keyVal === "Enter" || keyVal === "Backspace") {
         className = "key-cell-horizontal";
