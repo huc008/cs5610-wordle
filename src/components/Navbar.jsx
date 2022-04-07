@@ -1,6 +1,5 @@
 import './App.css';
-import { ReactComponent as Settings } from '../data/Settings.svg'
-import Settingss from '../data/Settings.svg'
+import Settings from '../data/Settings.svg'
 import Rules from '../data/question.svg'
 
 export default function Navbar() {
@@ -12,7 +11,7 @@ export default function Navbar() {
                     <a href="#" className="nav-item nav-link">Setting</a> 
                 </div>
                 <button className="setting-button">
-                    <img src={Settingss}/>
+                    <img src={Settings}/>
                 </button>
                 <h3 className="navbar-title">Wordle</h3>
                 {/* TODO: delete the "rule" & "setting" when button's onclick function works */}
