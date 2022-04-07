@@ -7,7 +7,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <h1 className="home-title">Wordle</h1>
       <div className="button-container">
         <Link className="button" to={"/easy"}>Easy</Link>
         <Link className="button" to={"/medium"}>Medium</Link>

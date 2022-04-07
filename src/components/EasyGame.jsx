@@ -71,6 +71,7 @@ export default function EasyGame({row, col, difficultyLevel}) {
 
     return (
         <div>
+            <Navbar />
             <h1 className="game-title">{difficultyLevel}</h1>
             <AppContext.Provider 
             value={{
