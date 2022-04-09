@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import { AppContext } from './EasyGame';
+import { GameContext } from './Game';
 
-export default function GameModal(props) {
-    const {openModal, setOpenModal, handleShow, handleClose} = useContext(AppContext);
+export default function GameModal() {
+    const {openModal, setOpenModal, handleShow, handleClose} = useContext(GameContext);
 
     return (
         <Modal show={openModal} onHide={handleClose}>

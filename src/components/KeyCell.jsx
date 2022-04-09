@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import {AppContext} from './EasyGame';
+import {GameContext} from './Game';
 
 export default function KeyCell({keyVal, disabled, actionKey}) {
     const {
         onSelectLetter,
         onDelete, 
         onEnter,
-    } = useContext(AppContext);
+    } = useContext(GameContext);
 
     const selectLetter = () => {
         if (keyVal === "Enter") {
@@ -17,7 +17,7 @@ export default function KeyCell({keyVal, disabled, actionKey}) {
             onSelectLetter(keyVal); 
         }
     }
-    
+
     let className = "key-cell-vertical";
     if (keyVal === "Enter" || keyVal === "Backspace") {
         className = "key-cell-horizontal";

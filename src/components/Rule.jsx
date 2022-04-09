@@ -5,7 +5,9 @@ export default function Rule() {
         <div className="text-center">
             <h1 className="title">What is this</h1>
             <p>
-                This is a web word-guessing game inspired by the <a href="https://www.nytimes.com/games/wordle/index.html">wordle</a> developed by Josh Wardle.
+                This is a web word-guessing game inspired by the 
+                <a href="https://www.nytimes.com/games/wordle/index.html">wordle</a> 
+                developed by Josh Wardle.
             </p>
             <p>
                 Developers improve this game by adding different modes to have more fun.

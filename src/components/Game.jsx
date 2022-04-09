@@ -1,7 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
 import KeyBoard from './KeyBoard';
 import Navbar from './Navbar'
-import EasyBoard from './EasyBoard';
+import GridBoard from './GridBoard';
 import { boardDefaultEasy, boardDefaultMedium, boardDefaultHard, generateWordsSet } from '../Words';
 import GameOver from './GameOver';
 import wordBankEasy from '../wordle-bank-easy.txt';
@@ -10,69 +10,69 @@ import wordBankHard from '../wordle-bank-hard.txt';
 import GameModal from './GameModal';
 
 
-export const AppContext = createContext();
+export const GameContext = createContext();
 
-export default function EasyGame({row, col, difficultyLevel}) {
+export default function Game({row, col, difficultyLevel}) {
+    let choosenWordBank = difficultyLevel === "Easy" ? wordBankEasy : difficultyLevel === "Medium" ? wordBankMedium : wordBankHard;
+    const [openModal, setOpenModal] = useState(false);
     const [board, setBoard] = useState(difficultyLevel === "Easy" ? boardDefaultEasy : difficultyLevel === "Medium" ? boardDefaultMedium : boardDefaultHard);
-    const [currAttempt, setCurrAttempt] = useState({attempt: 0, letterPos: 0});
+    const [currTryout, setCurrTryout] = useState({ x_val: 0, y_val: 0 });
     const [wordSet, setWordSet] = useState(new Set());
     const [correctWord, setCorrectWord] = useState("");
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({
         gameOver: false,
-        guessedWord: false,
+        triedWord: false,
     });
-
-    const [openModal, setOpenModal] = useState(false);
 
     const handleClose = () => setOpenModal(false);
     const handleShow = () => setOpenModal(true);
 
-    let choosenWordBank = difficultyLevel === "Easy" ? wordBankEasy : difficultyLevel === "Medium" ? wordBankMedium : wordBankHard;
     useEffect(() => {
         generateWordsSet(choosenWordBank).then((words) =>{
             setWordSet(words.wordSet);
-            setCorrectWord(words.todaysWord);
+            setCorrectWord(words.selectedMagicWord);
         });
     }, []);
 
+    // console.log(correctWord);
     const onSelectLetter = (keyVal) => {
-        if (currAttempt.letterPos >= col) return;
+        if (currTryout.y_val >= col) return;
         const newBoard = [...board];
-        newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;  
+        newBoard[currTryout.x_val][currTryout.y_val] = keyVal;  
         setBoard(newBoard);
-        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos + 1});
+        setCurrTryout({...currTryout, y_val: currTryout.y_val + 1});
     };
 
     const onDelete = () => {
-        if (currAttempt.letterPos === 0) return;
+        if (currTryout.y_val === 0) return;
         const newBoard = [...board];
-        newBoard[currAttempt.attempt][currAttempt.letterPos - 1 ] = ""; 
+        newBoard[currTryout.x_val][currTryout.y_val - 1 ] = ""; 
         setBoard(newBoard);
-        setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos - 1});
+        setCurrTryout({...currTryout, y_val: currTryout.y_val - 1});
     };
 
     const onEnter = () => {
-        if (currAttempt.letterPos !== col) return;
+        if (currTryout.y_val !== col) return;
 
         let currWord = "";
         for (let i = 0; i < col; i++) {
-            currWord += board[currAttempt.attempt][i];
+            currWord += board[currTryout.x_val][i];
         }
 
         if (wordSet.has(currWord.toLowerCase())) {
-            setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0});
+            setCurrTryout({ x_val: currTryout.x_val + 1, y_val: 0});
         } else {
             // alert("Word Not Found");
             setOpenModal(true);
         }
 
         if (currWord.toLowerCase() === correctWord.toLowerCase()) {
-            setGameOver({gameOver: true, guessedWord: true});
+            setGameOver({gameOver: true, triedWord: true});
         }
 
-        if (currAttempt.attempt === row-1) {
-            setGameOver({gameOver: true, guessedWord: false});
+        if (currTryout.x_val === row-1) {
+            setGameOver({gameOver: true, triedWord: false});
         }
     };
 
@@ -80,12 +80,12 @@ export default function EasyGame({row, col, difficultyLevel}) {
         <div>
             <Navbar />
             <h1 className="game-title">{difficultyLevel}</h1>
-            <AppContext.Provider 
+            <GameContext.Provider 
             value={{
                 board, 
                 setBoard, 
-                currAttempt, 
-                setCurrAttempt, 
+                currTryout, 
+                setCurrTryout, 
                 onSelectLetter,
                 onDelete, 
                 onEnter,
@@ -101,12 +101,12 @@ export default function EasyGame({row, col, difficultyLevel}) {
             }}>
                 {openModal ? <GameModal/> : null}
                 <div className="grid-container">
-                    <EasyBoard row={row} col={col}/>
+                    <GridBoard row={row} col={col}/>
                 </div>
                 <div className="keyboard-container">
                     {gameOver.gameOver ? <GameOver /> : <KeyBoard />}
                 </div>
-            </AppContext.Provider>
+            </GameContext.Provider>
         </div>
     )
 }

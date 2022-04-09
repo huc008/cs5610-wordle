@@ -28,13 +28,13 @@ export const boardDefaultHard = [
 
 export const generateWordsSet = async (inputBank) => {
     let wordSet;  
-    let todaysWord;
+    let selectedMagicWord;
     await fetch(inputBank)
     .then((response) => response.text())  
     .then((result) => {
-        const wordArr = result.split("\n");
-        todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)];
-        wordSet = new Set(wordArr);
+        const wordArray = result.split("\n");
+        selectedMagicWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+        wordSet = new Set(wordArray);
     });
-    return { wordSet, todaysWord };
+    return { wordSet, selectedMagicWord };
 };

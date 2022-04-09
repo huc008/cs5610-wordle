@@ -1,32 +1,32 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from './EasyGame';
+import { GameContext } from './Game';
 
-export default function SingleBox({letterPos, attemptVal}) {
+export default function SingleBox({y_pos, x_pos}) {
     const {
         board, 
         correctWord, 
-        currAttempt, 
+        currTryout, 
         disabledLetters,
-        setDisabledLetters} = useContext(AppContext);
-    const letter = board[attemptVal][letterPos];
-    const correct = correctWord.toUpperCase()[letterPos] === letter;
+        setDisabledLetters} = useContext(GameContext);
+    const letter = board[x_pos][y_pos];
+    const correct = correctWord.toUpperCase()[y_pos] === letter;
     const almost = 
         !correct && letter !== "" && correctWord.toUpperCase().includes(letter);
 
     const letterState = 
-        currAttempt.attempt > attemptVal && 
+        currTryout.x_val > x_pos && 
         (correct ? "correct" : almost ? "almost" : "error");
 
     useEffect(() => {
         if (letter !== "" && !correct && !almost) {
             setDisabledLetters((prev) => [...prev, letter]);
         }
-    }, [currAttempt.attempt]);
+    }, [currTryout.x_val]);
         
     return (
         <div>
             <div className="single-box" id={letterState}>
-                {" "}
+                {/* {" "} */}
                 {letter}
             </div>
         </div>
