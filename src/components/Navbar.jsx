@@ -8,7 +8,7 @@ export default function Navbar() {
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="navbar-nav">
                 {/* TODO: set it to homepage */}
-                    <a href="#" className="nav-item nav-link">Setting</a> 
+                    <a href="/.." className="nav-item nav-link">Setting</a> 
                 </div>
                 <button className="setting-button">
                     <img src={Settings}/>
