@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 
 
 function App() {
+  localStorage.clear();
   return (
     <div className="App">
       <Navbar />
