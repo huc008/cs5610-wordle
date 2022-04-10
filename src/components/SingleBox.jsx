@@ -10,22 +10,22 @@ export default function SingleBox({y_pos, x_pos}) {
         setDisabledLetters} = useContext(GameContext);
     const letter = board[x_pos][y_pos];
     const correct = correctWord.toUpperCase()[y_pos] === letter;
-    const almost = 
+    const almostCorrect = 
         !correct && letter !== "" && correctWord.toUpperCase().includes(letter);
 
-    const letterState = 
+    const isLetterCorrect = 
         currTryout.x_val > x_pos && 
-        (correct ? "correct" : almost ? "almost" : "error");
+        (correct ? "correct" : almostCorrect ? "almostCorrect" : "error");
 
     useEffect(() => {
-        if (letter !== "" && !correct && !almost) {
+        if (letter !== "" && !correct && !almostCorrect) {
             setDisabledLetters((prev) => [...prev, letter]);
         }
     }, [currTryout.x_val]);
         
     return (
         <div>
-            <div className="single-box" id={letterState}>
+            <div className="single-box" id={isLetterCorrect}>
                 {/* {" "} */}
                 {letter}
             </div>

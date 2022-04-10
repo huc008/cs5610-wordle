@@ -63,7 +63,6 @@ export default function Game({row, col, difficultyLevel}) {
         if (wordSet.has(currWord.toLowerCase())) {
             setCurrTryout({ x_val: currTryout.x_val + 1, y_val: 0});
         } else {
-            // alert("Word Not Found");
             setOpenModal(true);
         }
 
