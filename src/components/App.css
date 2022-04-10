@@ -137,7 +137,7 @@
   background-color: #528d4e;
 }
 
-#almost {
+#almostCorrect {
   background-color: #b49f39;
 }
 
@@ -147,4 +147,10 @@
 
 #disabled {
   background-color: #3a393c;
+}
+
+.gameOver {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
 }

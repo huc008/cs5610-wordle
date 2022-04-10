@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useContext } from 'react';
 import KeyCell from './KeyCell';
-import { AppContext } from './EasyGame';
+import { GameContext } from './Game';
 
 export default function KeyBoard() {
-    const {onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(AppContext);
+    const {onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(GameContext);
 
     const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];

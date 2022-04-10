@@ -1,32 +1,32 @@
 import React, { useContext, useEffect } from 'react';
-import { AppContext } from './EasyGame';
+import { GameContext } from './Game';
 
-export default function SingleBox({letterPos, attemptVal}) {
+export default function SingleBox({y_pos, x_pos}) {
     const {
         board, 
         correctWord, 
-        currAttempt, 
+        currTryout, 
         disabledLetters,
-        setDisabledLetters} = useContext(AppContext);
-    const letter = board[attemptVal][letterPos];
-    const correct = correctWord.toUpperCase()[letterPos] === letter;
-    const almost = 
+        setDisabledLetters} = useContext(GameContext);
+    const letter = board[x_pos][y_pos];
+    const correct = correctWord.toUpperCase()[y_pos] === letter;
+    const almostCorrect = 
         !correct && letter !== "" && correctWord.toUpperCase().includes(letter);
 
-    const letterState = 
-        currAttempt.attempt > attemptVal && 
-        (correct ? "correct" : almost ? "almost" : "error");
+    const isLetterCorrect = 
+        currTryout.x_val > x_pos && 
+        (correct ? "correct" : almostCorrect ? "almostCorrect" : "error");
 
     useEffect(() => {
-        if (letter !== "" && !correct && !almost) {
+        if (letter !== "" && !correct && !almostCorrect) {
             setDisabledLetters((prev) => [...prev, letter]);
         }
-    }, [currAttempt.attempt]);
+    }, [currTryout.x_val]);
         
     return (
         <div>
-            <div className="single-box" id={letterState}>
-                {" "}
+            <div className="single-box" id={isLetterCorrect}>
+                {/* {" "} */}
                 {letter}
             </div>
         </div>
