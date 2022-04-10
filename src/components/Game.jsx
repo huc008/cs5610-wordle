@@ -34,13 +34,12 @@ export default function Game({row, col, difficultyLevel}) {
     useEffect(() => {
         if(window.localStorage.getItem('correctWord') == null || JSON.parse(window.localStorage.getItem('correctWord')).length != wordLevelLength) {
             console.log("don't have storage correctWord");
+            localStorage.removeItem('board');
             generateWordsSet(choosenWordBank).then((words) =>{
                 setWordSet(words.wordSet);
                 setCorrectWord(words.selectedMagicWord);
                 window.localStorage.setItem('correctWord', JSON.stringify(words.selectedMagicWord));
-                // console.log("wordSet " + words.wordSet);
                 console.log("Answer_selectedMagicWord: " + words.selectedMagicWord);
-                console.log("Answer_correctWord: " + correctWord);
             });
         } else {
             console.log("find the word ");
@@ -49,6 +48,7 @@ export default function Game({row, col, difficultyLevel}) {
                 setWordSet(words.wordSet);
             });
             console.log("Answer_correctWord: " + JSON.parse(window.localStorage.getItem('correctWord')));
+
         }
 }, []);
     
@@ -63,16 +63,24 @@ export default function Game({row, col, difficultyLevel}) {
             setBoard(newboard)
         }
         let tmpTryout = JSON.parse(window.localStorage.getItem('currTryout'));
-        if(tmpTryout && !(tmpTryout.x_val == 0 && tmpTryout.y_val == 0)) {
-            tmpTryout = {...tmpTryout, y_val: tmpTryout.y_val + 1};
+        if(tmpTryout) {
             setCurrTryout(tmpTryout); 
         }
+        // if(tmpTryout){
+        //     console.log("x: " + tmpTryout.x_val);
+        //     console.log("y: " + tmpTryout.y_val);
+        // }
+       
     }, []);
 
     useEffect(() => {
         window.localStorage.setItem('board', JSON.stringify(board));
-        window.localStorage.setItem('currTryout', JSON.stringify(currTryout));
     }, [board]);
+
+    useEffect(() => {
+        window.localStorage.setItem('currTryout', JSON.stringify(currTryout));
+    }, [currTryout]);
+
 
     useEffect(() => {
         if(gameOver.gameOver){
@@ -111,7 +119,8 @@ export default function Game({row, col, difficultyLevel}) {
         }
 
         if (wordSet.has(currWord.toLowerCase())) {
-            setCurrTryout({ x_val: currTryout.x_val + 1, y_val: 0});
+            let tmpTryout = { x_val: currTryout.x_val + 1, y_val: 0};
+            setCurrTryout(tmpTryout);
         } else {
             setModalVal("Oh no, word not found!");
             setOpenModal(true);
