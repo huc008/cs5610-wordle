@@ -25,6 +25,7 @@ export default function Game({row, col, difficultyLevel}) {
         gameOver: false,
         triedWord: false,
     });
+    const [modalVal, setModalVal] = useState("");
 
     const handleClose = () => setOpenModal(false);
     const handleShow = () => setOpenModal(true);
@@ -99,8 +100,11 @@ export default function Game({row, col, difficultyLevel}) {
     };
 
     const onEnter = () => {
-        if (currTryout.y_val !== col) return;
-
+        if (currTryout.y_val !== col) {
+            setModalVal("Not enough letters!");
+            setOpenModal(true);
+            return;
+        }
         let currWord = "";
         for (let i = 0; i < col; i++) {
             currWord += board[currTryout.x_val][i];
@@ -109,6 +113,7 @@ export default function Game({row, col, difficultyLevel}) {
         if (wordSet.has(currWord.toLowerCase())) {
             setCurrTryout({ x_val: currTryout.x_val + 1, y_val: 0});
         } else {
+            setModalVal("Oh no, word not found!");
             setOpenModal(true);
         }
 
@@ -143,8 +148,10 @@ export default function Game({row, col, difficultyLevel}) {
                 setOpenModal,
                 handleClose,
                 handleShow,
+                modalVal,
+                setModalVal,
             }}>
-                {openModal ? <GameModal/> : null}
+                {openModal ? <GameModal modalVal={modalVal} /> : null}
                 <div className="grid-container">
                     <GridBoard row={row} col={col}/>
                 </div>
