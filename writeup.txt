@@ -1,0 +1,5 @@
+- What were some challenges you faced while making this app?
+
+The challenges were at first we were not sure which functions and hooks we should share among    
+different components and which functions are local.
+And 
