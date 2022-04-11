@@ -10,9 +10,9 @@ function GameOver() {
 
     return (
         <div className="gameOver">
-            <h3>{gameOver.guessedWord ? "Correctly guessed!" : "Failed!"}</h3>
+            <h3>{gameOver.triedWord ? "Correctly guessed!" : "Failed!"}</h3>
             <h1>Correct word is: {correctWord}</h1>
-            {gameOver.guessedWord && (
+            {gameOver.triedWord && (
                 <h3> You succeeded the game in {currTryout.x_val} tryouts.</h3>
             )}
             <button className="button" onClick={playAgain}>Play Again</button>
