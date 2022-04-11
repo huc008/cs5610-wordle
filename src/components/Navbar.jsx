@@ -2,6 +2,7 @@ import './App.css';
 import Settings from '../data/Settings.svg'
 import Rules from '../data/question.svg'
 
+
 export default function Navbar() {
     return (
         <div>
