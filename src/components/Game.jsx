@@ -8,6 +8,7 @@ import wordBankEasy from '../wordle-bank-easy.txt';
 import wordBankMedium from '../wordle-bank-medium.txt';
 import wordBankHard from '../wordle-bank-hard.txt';
 import GameModal from './GameModal';
+import StaticModal from './StaticModal';
 
 
 export const GameContext = createContext();
@@ -16,6 +17,7 @@ export default function Game({row, col, difficultyLevel}) {
     let choosenWordBank = difficultyLevel === "Easy" ? wordBankEasy : difficultyLevel === "Medium" ? wordBankMedium : wordBankHard;
     let wordLevelLength = difficultyLevel === "Easy" ? 5 : difficultyLevel === "Medium" ? 6 : 7;
     const [openModal, setOpenModal] = useState(false);
+    const [openModalStatic, setOpenModalStatic] = useState(false);
     const [board, setBoard] = useState(difficultyLevel === "Easy" ? boardDefaultEasy : difficultyLevel === "Medium" ? boardDefaultMedium : boardDefaultHard);
     const [currTryout, setCurrTryout] = useState({ x_val: 0, y_val: 0 });
     const [wordSet, setWordSet] = useState(new Set());
@@ -26,8 +28,10 @@ export default function Game({row, col, difficultyLevel}) {
         triedWord: false,
     });
     const [modalVal, setModalVal] = useState("");
+    const [gameResult, setGameResult] = useState("");
 
     const handleClose = () => setOpenModal(false);
+    const handleCloseStatic = () => setOpenModalStatic(false);
     const handleShow = () => setOpenModal(true);
 
     //to save answer when reload with unfinished game:
@@ -128,10 +132,14 @@ export default function Game({row, col, difficultyLevel}) {
 
         if (currWord.toLowerCase() === correctWord.toLowerCase()) {
             setGameOver({gameOver: true, triedWord: true});
+            setGameResult("Success");
+            setOpenModalStatic(true);
         }
 
         if (currTryout.x_val === row-1) {
             setGameOver({gameOver: true, triedWord: false});
+            setGameResult("Fail");
+            setOpenModalStatic(true);
         }
     };
 
@@ -156,11 +164,15 @@ export default function Game({row, col, difficultyLevel}) {
                 openModal, 
                 setOpenModal,
                 handleClose,
+                handleCloseStatic,
                 handleShow,
                 modalVal,
                 setModalVal,
+                openModalStatic,
+                setOpenModalStatic,
             }}>
                 {openModal ? <GameModal modalVal={modalVal} /> : null}
+                {openModalStatic ? <StaticModal gameResult={gameResult} /> : null}
                 <div className="grid-container">
                     <GridBoard row={row} col={col}/>
                 </div>
