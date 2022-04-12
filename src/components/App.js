@@ -2,7 +2,6 @@ import './App.css';
 import {Link, NavLink} from "react-router-dom";
 import Navbar from './Navbar'
 
-
 function App() {
   localStorage.clear();
   return (
@@ -15,8 +14,6 @@ function App() {
         <Link className="button" to={"/rule"}>Rule</Link>
       </div>
     </div>
-
-    
   );
 }
 

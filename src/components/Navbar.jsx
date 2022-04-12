@@ -8,18 +8,22 @@ export default function Navbar() {
         <div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="navbar-nav">
-                {/* TODO: set it to homepage */}
                     <a href="/.." className="nav-item nav-link">Setting</a> 
                 </div>
-                <button className="setting-button">
+                <button className="setting-button" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='/..';
+                    }}>
                     <img src={Settings}/>
                 </button>
                 <h3 className="navbar-title">Wordle</h3>
-                {/* TODO: delete the "rule" & "setting" when button's onclick function works */}
                 <div className="navbar-nav ms-auto">
                     <a href="/rule" className="nav-item nav-link">Rule</a>
                 </div>
-                <button className="setting-button">
+                <button className="setting-button" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='/rule';
+                    }}>
                     <img src={Rules}/>
                 </button>
             </nav>

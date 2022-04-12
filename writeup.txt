@@ -1,5 +1,19 @@
 - What were some challenges you faced while making this app?
-
 The challenges were at first we were not sure which functions and hooks we should share among    
 different components and which functions are local.
-And 
+And the save data features produced some bugs that were not easy to fix for us. 
+
+- Given more time, what additional features, functional or design changes would you make?
+I would like to add a new feature which can calculate how much score the user get from differnt 
+level of difficulty games. If the user successfully guessed a easy level game, he will win 5 points,
+medium level: 6 points, and hard level: 7 points. Once the user gets to 50 points, he will 
+get a magic sentence as the prize. What'more, I also would like to design the page to be more mobile screen friendly.
+
+
+- What assumptions did you make while working on this assignment?
+The assumptions I made for this assignment were that since the game is complicated, 
+and and in each page there were some common features such as keyboard, I should consider what components 
+could be reused and what cannot be reused, so that my code would be efficient and redable. 
+
+- How long did this assignment take to complete?
+10 days.
