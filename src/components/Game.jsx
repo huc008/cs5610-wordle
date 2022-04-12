@@ -29,6 +29,7 @@ export default function Game({row, col, difficultyLevel}) {
     });
     const [modalVal, setModalVal] = useState("");
     const [gameResult, setGameResult] = useState("");
+    const [correctWordObj, setCorrectWordObj] = useState({});
 
     const handleClose = () => setOpenModal(false);
     const handleCloseStatic = () => setOpenModalStatic(false);
@@ -95,6 +96,31 @@ export default function Game({row, col, difficultyLevel}) {
         }
     }, [gameOver.gameOver]);
 
+    // let correctWordObjTemp = {};
+    // for (let i = 0; i < correctWord.length; i++) {
+    //     if (correctWord[i] in correctWordObj) {
+    //         correctWordObjTemp[correctWord[i]] += 1;
+    //     } else {
+    //         correctWordObjTemp[correctWord[i]] = 1;
+    //     }
+    // }
+
+    useEffect(() => {
+        let correctWordObjTemp = {};
+        for (let i = 0; i < correctWord.length; i++) {
+            if (correctWord[i] in correctWordObj) {
+                correctWordObjTemp[correctWord[i]] += 1;
+            } else {
+                correctWordObjTemp[correctWord[i]] = 1;
+            }
+        }
+        console.log("dog");
+        setCorrectWordObj(correctWordObjTemp);
+    },[]);
+
+    // setCorrectWordObj(correctWordObjTemp);
+    console.log("correctWordObj is: " + correctWordObj[correctWord[0]]);
+
     const onSelectLetter = (keyVal) => {
         if (currTryout.y_val >= col) return;
         const newBoard = [...board];
@@ -121,6 +147,12 @@ export default function Game({row, col, difficultyLevel}) {
         for (let i = 0; i < col; i++) {
             currWord += board[currTryout.x_val][i];
         }
+
+        // for (let i = 0; i < currWord.length; i++) {
+        //     if (currWord[i] === correctWord[i]) {
+
+        //     }
+        // }
 
         if (wordSet.has(currWord.toLowerCase())) {
             let tmpTryout = { x_val: currTryout.x_val + 1, y_val: 0};
@@ -170,6 +202,8 @@ export default function Game({row, col, difficultyLevel}) {
                 setModalVal,
                 openModalStatic,
                 setOpenModalStatic,
+                correctWordObj,
+                setCorrectWordObj,
             }}>
                 {openModal ? <GameModal modalVal={modalVal} /> : null}
                 {openModalStatic ? <StaticModal gameResult={gameResult} /> : null}
